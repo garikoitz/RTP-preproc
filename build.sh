@@ -1,5 +1,5 @@
 #!/bin/bash
 ## version
-tag=1.0.2
+tag=1.0.3
 
-docker build -t scitran-apps/mrtrix3preproc:$tag ./
+docker build -t vistalab/RTP-preproc:$tag ./
