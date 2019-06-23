@@ -9,7 +9,7 @@ set -e
 
 ###############################################################################
 # Adapted from a run file from Flywheel
-CONTAINER="[scitran/mrtrix3preproc]"
+CONTAINER="[vistalab/RTP-preproc]"
 echo -e "$CONTAINER  Initiated"
 
 
