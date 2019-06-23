@@ -7,6 +7,6 @@ The output of this gear is prepared to go to RTP-pipeline.
 TO-DO:
 1. Document different preprocessing options. 
 2. Include other vistalab tools in the same gear to have a complete set of solutions. 
-2.1. dwi-bvec-flip-detect
-2.2. dwi-flip-bvec
-2.3. dwi-acpc-anat-normalize
+  2.1. dwi-bvec-flip-detect
+  2.2. dwi-flip-bvec
+  2.3. dwi-acpc-anat-normalize
