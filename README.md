@@ -5,7 +5,7 @@ This gear takes diffusion images, bvec and bval files, and optionally a T1 and p
 The output of this gear is prepared to go to RTP-pipeline.
 
 
-TO-DO:
+## TO-DO:
 1. Document different preprocessing options. 
 2. Include other vistalab tools in the same gear to have a complete set of solutions in the same gear. Right now it is required to launch them separately. 
     1. dwi-bvec-flip-detect
