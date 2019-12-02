@@ -4,8 +4,10 @@ Reproducible Tract Profiles - preprocessing.
 This gear takes diffusion images, bvec and bval files, and optionally a T1 and preprocess them. 
 The output of this gear is prepared to go to RTP-pipeline.
 
+This gear is an adaptation from mrTrix's (https://github.com/MRtrix3/mrtrix3) recommended preprocessing procedure implemented in Brainlife (https://brainlife.io/app/5a813e52dc4031003b8b36f9)
 
-TO-DO:
+
+## TO-DO:
 1. Document different preprocessing options. 
 2. Include other vistalab tools in the same gear to have a complete set of solutions in the same gear. Right now it is required to launch them separately. 
     1. dwi-bvec-flip-detect
