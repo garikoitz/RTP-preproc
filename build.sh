@@ -1,5 +1,5 @@
 #!/bin/bash
 ## version
-tag=1.0.3
+tag=1.0.4
 
-docker build -t vistalab/RTP-preproc:$tag ./
+docker build -t vistalab/rtppreproc:$tag ./

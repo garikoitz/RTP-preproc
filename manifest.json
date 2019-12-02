@@ -1,5 +1,5 @@
 {
-  "name": "RTPpreproc",
+  "name": "rtppreproc",
   "label": "RTP Preprocessing Pipeline",
   "description": "RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when the optional inverse phase encoded data are provided, otherwise the pipeline uses FSL's eddy tool. The pipeline can also perform de-noising, reslicing, and alignment to an anatomical image. Required inputs are diffusion NIfTI, BVEC, BVAL, and Anatomical (ACPC aligned) NIfTI.",
   "maintainer": "Garikoitz Lerma-Usabiaga <glerma@stanford.edu>",
@@ -8,16 +8,16 @@
   "source": "https://github.com/scitran-apps/mrtrix3preproc",
   "license": "Other",
   "cite": "Gear adapted from https://github.com/brain-life/app-mrtrix3-preproc. Ref: https://mrtrix.readthedocs.io/en/latest/reference/scripts/dwipreproc.html#references",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "custom": {
-    "docker-image": "vistalab/RTPpreproc:1.0.3",
+    "docker-image": "vistalab/rtppreproc:1.0.4",
     "flywheel": {
       "suite": "RTP"
     }
   },
   "config": {
     "rpe": {
-      "description": "Specify if there are reverse phase encoded data. Options are 'none', 'header', 'pairs', 'all'. [default=none]",
+      "description": "Specify if there are reverse phase encoded data. Options are 'none', 'header', 'pairs', 'all'. See mrtrix docs to understand values. Important: 'all' is expecting one file, but two need to be provided, this script will concatenate them. If a concatenaded one is passed, it will assume rpe='none'. [default=none]",
       "default": "none",
       "type": "string"
     },
@@ -33,7 +33,7 @@
     },
     "degibbs": {
       "description": "Perform Gibbs ringing correction  [default=true]",
-      "default": true,
+      "default": false,
       "type": "boolean"
     },
     "eddy": {
@@ -42,13 +42,13 @@
       "type": "boolean"
     },
     "bias": {
-      "description": "Compute bias correction with ANTs on dwi data [default=true]",
-      "default": true,
+      "description": "Compute bias correction with ANTs on dwi data [default=false]",
+      "default": false,
       "type": "boolean"
     },
     "ricn": {
-      "description": "Perform Rician background noise removal [default=true]",
-      "default": true,
+      "description": "Perform Rician background noise removal [default=false]",
+      "default": false,
       "type": "boolean"
     },
     "norm": {
@@ -61,8 +61,8 @@
       "default": 1000,
       "type": "number"
     },
-    "acpc": {
-      "description": "Align dwi data with AC-PC anatomy [default=false]",
+    "anatalign": {
+      "description": "Align dwi data with anatomy [default=false]",
       "default": false,
       "type": "boolean"
     },
@@ -72,7 +72,13 @@
       "type": "boolean",
       "id": "-doreslice"
     },
-    "reslice": {
+     "saveoutput": {
+      "description": "Save all the intermediate files (both .mif and .nii.gz), for QC and debugging [default=false]",
+      "default": false,
+      "type": "boolean",
+      "id": "-saveoutput"
+    },
+   "reslice": {
       "description": "Optional. By default reslicing is not done. If you want it done, set doreslice=true and set a number (e.g., 1) here to reslice the dwi data to this isotropic voxel size (in mm).",
       "optional": true,
       "type": "number"
@@ -107,7 +113,7 @@
       }
     },
     "ANAT": {
-      "description": "Optional anatomical T1w NIfTI image. Required only if acpc=true",
+      "description": "Optional anatomical T1w NIfTI image. Required only if anatalign=true",
       "base": "file",
       "optional": true,
       "type": {
