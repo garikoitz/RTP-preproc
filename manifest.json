@@ -77,13 +77,13 @@
       "type": "boolean",
       "id": "-doreslice"
     },
-     "saveoutput": {
+    "saveoutput": {
       "description": "Save all the intermediate files (both .mif and .nii.gz), for QC and debugging [default=false]",
       "default": false,
       "type": "boolean",
       "id": "-saveoutput"
     },
-   "reslice": {
+    "reslice": {
       "description": "Optional. By default reslicing is not done. If you want it done, set doreslice=true and set a number (e.g., 1) here to reslice the dwi data to this isotropic voxel size (in mm).",
       "optional": true,
       "type": "number"
