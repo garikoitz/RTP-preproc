@@ -27,8 +27,6 @@ CONFIG_FILE=$FLYWHEEL_BASE/config.json
 ###############################################################################
 # Configure the ENV
 
-# Not doing anything here for now, I understand it comes configured from the
-# container this is based on
 ## add N4BiasFieldCorrection to path
 chmod +x /etc/fsl/5.0/fsl.sh
 source /etc/fsl/5.0/fsl.sh
@@ -48,7 +46,10 @@ FSLREMOTECALL=
 FSLTCLSH=/usr/bin/tclsh
 FSLWISH=/usr/bin/wish
 POSSUMDIR=/usr/share/fsl/5.0
-
+# add base fw so that it can find the awkflipbvec
+PATH=$PATH:/$FLYWHEEL_BASE
+# Same for python3 in miniconda
+export PATH=$PATH:/root/miniconda3/bin
 ###############################################################################
 # Initialize config parameters
 
@@ -405,8 +406,10 @@ fi
 if [[ $DO_ANATALIGN == "true" ]]; then
 
     ## create local copy of anat
-    cp $ANAT ./t1.nii.gz
-    ANAT=t1
+    ## instead of a single copy, make sure the T1 is RAS, as we do the same with the DWI
+    # cp $ANAT ./t1.nii.gz
+    mrconvert -quiet -stride 1,2,3 $ANAT ./t1.nii.gz
+	ANAT=t1
     
     echo "Running brain extraction on anatomy..."
 
@@ -467,41 +470,8 @@ mrconvert ${difm}.mif -stride 1,2,3,4 dwi.nii.gz -export_grad_fsl dwi.bvecs dwi.
 
 # Here we can change the strides to -1,2,3,4 or flip the bvec. Later one we would prefer to have RAS instead of LAS, then here we are going to change the x only. 
 # This requires more work on the future and more thorough testing for when the data is coming incorrectly, as with the newest FSL versions we need to have it right from the beginning.
-
-
-mv dwi.bvecs dwi_noXflip.bvecs
-
-awk '
-{
-    for (i=1; i<=NF; i++)  {
-        a[NR,i] = $i
-    }
-}
-NF>p { p = NF }
-END {
-    for(j=1; j<=p; j++) {
-        str=a[1,j]
-        for(i=2; i<=NR; i++){
-            str=str" "a[i,j];
-        }
-        print str
-    }
-}' dwi_noXflip.bvecs | awk  '$1 *= -1' | awk '
-{
-    for (i=1; i<=NF; i++)  {
-        a[NR,i] = $i
-    }
-}
-NF>p { p = NF }
-END {
-    for(j=1; j<=p; j++) {
-        str=a[1,j]
-        for(i=2; i<=NR; i++){
-            str=str" "a[i,j];
-        }
-        print str
-    }
-}' >> dwi.bvecs
+# awkflipbvec.sh dwi.bvecs dwi_noXflip.bvecs
+python3 $FLYWHEEL_BASE/flipX.py dwi.bvecs dwi_noXflip.bvecs
 
 
 ## export a lightly structured text file (json?) of shell count / lmax
