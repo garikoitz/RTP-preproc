@@ -1,13 +1,18 @@
 {
-    "rpe": "none",
-    "acqd": "PA",
-    "denoise": true,
-    "degibbs": true,
-    "eddy": true,
-    "bias": true,
-    "ricn": true,
-    "norm": false,
-    "nval": 1000,
-    "acpc": true,
-    "reslice": 1
+    "config":{
+        "rpe": "none",
+        "acqd": "AP",
+        "denoise": false,
+        "degibbs": false,
+        "eddy": false,
+        "bias": false,
+        "ricn": false,
+        "norm": false,
+        "nval": 1000,
+        "anatalign": false,
+        "reslice":1,
+        "doreslice": false,
+        "saveoutput":false
+    }
 }
+

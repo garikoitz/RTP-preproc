@@ -1,7 +1,6 @@
 #!/bin/bash
-#docker run --rm -it --entrypoint=/bin/bash \
-docker run --rm -it $2 \
-        -v /share/wandell/users/glerma/TESTDATA/RTP-preproc/config.json:/flywheel/v0/config.json \
-        -v /black/localhome/glerma/TESTDATA/RTP-preproc/input:/flywheel/v0/input \
-        -v /black/localhome/glerma/TESTDATA/RTP-preproc/output:/flywheel/v0/output \
+docker run --rm -it $4 \
+        -v $3:/flywheel/v0/config.json \
+        -v $2/input:/flywheel/v0/input \
+        -v $2/output:/flywheel/v0/output \
         vistalab/rtppreproc:$1 

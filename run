@@ -145,9 +145,9 @@ if [[ -d  $INPUT_DIR/ANAT ]]; then
 fi
 ## optional FS, alignment to FS mask if FS dir exists
 
-if [[ -d $INPUT_DIR/FS ]]; then
-    FS="true"														 ## optional
-	FSMASK=$(find $INPUT_DIR/FS/* -type f -name "brainmask.nii*" | head -1) 
+if [[ -d $INPUT_DIR/FSMASK ]]; then
+    FS=true
+	FSMASK=$(find $INPUT_DIR/FSMASK/* -type f -name "*.nii*" | head -1) 
 fi
 ## optional reverse phase encoded (rpe) inputs5yy
 if [[ -d  $INPUT_DIR/RDIF ]]; then
