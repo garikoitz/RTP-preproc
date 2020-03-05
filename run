@@ -143,11 +143,17 @@ BVEC=$(find $INPUT_DIR/BVEC/* -type f -name "*.bvec*" | head -1)
 if [[ -d  $INPUT_DIR/ANAT ]]; then
     ANAT=$(find $INPUT_DIR/ANAT/* -type f -name "*.nii*" | head -1)  ## optional
 fi
+## optional FS, alignment to FS mask if FS dir exists
 
+if [[ -d $INPUT_DIR/FSMASK ]]; then
+    FS=true
+	FSMASK=$(find $INPUT_DIR/FSMASK/* -type f -name "*.nii*" | head -1) 
+fi
 ## optional reverse phase encoded (rpe) inputs5yy
 if [[ -d  $INPUT_DIR/RDIF ]]; then
     RDIF=$(find $INPUT_DIR/RDIF/* -type f -name "*.nii*" | head -1)  ## optional
 fi
+
 if [[ -d  $INPUT_DIR/RBVL ]]; then
     RBVL=$(find $INPUT_DIR/RBVL/* -type f -name "*.bval*" | head -1) ## optional
 fi
@@ -404,17 +410,21 @@ if [[ $DO_NORM == "true" ]]; then
 fi
 
 if [[ $DO_ANATALIGN == "true" ]]; then
-
-    ## create local copy of anat
+        
+	## create local copy of anat
     ## instead of a single copy, make sure the T1 is RAS, as we do the same with the DWI
     # cp $ANAT ./t1.nii.gz
     mrconvert -quiet -stride 1,2,3 $ANAT ./t1.nii.gz
 	ANAT=t1
     
-    echo "Running brain extraction on anatomy..."
-
-    ## create t1 mask
-    bet ${ANAT}.nii.gz ${ANAT}_brain -R -B -m
+	echo "Running brain extraction on anatomy..."
+	if [[ $FS == "true" ]]; then
+		## use FS mask if FS dir exist 
+		mrconvert -quiet -stride 1,2,3 $FSMASK ./t1_brain.nii.gz
+	else
+       	## create t1 mask
+       	bet ${ANAT}.nii.gz ${ANAT}_brain -R -B -m
+	fi
 
     echo "Aligning dwi data with  anatomy..."
 
