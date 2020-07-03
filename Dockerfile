@@ -44,12 +44,14 @@ RUN cd mrtrix3 && git fetch --tags && git checkout tags/3.0_RC3 && ./configure -
 ENV PATH=$PATH:/mrtrix3/bin
 
 # Add Miniconda
+RUN mkdir /conda
+RUN chmod a+wrx /conda
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh
-RUN bash Miniconda3-4.5.4-Linux-x86_64.sh -b
+RUN bash Miniconda3-4.5.4-Linux-x86_64.sh -b -p /conda
 RUN rm Miniconda3-4.5.4-Linux-x86_64.sh
 
 # Set path to conda
-ENV PATH $PATH:/root/miniconda3/bin
+ENV PATH $PATH:/conda/miniconda3/bin
 
 # Updating Miniconda packages
 RUN conda update conda
@@ -86,4 +88,6 @@ COPY flipX.py ${FLYWHEEL}/flipX.py
 ENTRYPOINT ["/flywheel/v0/run"]
 
 
+#make it work under singularity
+RUN ldconfig 
 

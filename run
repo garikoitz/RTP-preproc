@@ -28,7 +28,7 @@ CONFIG_FILE=$FLYWHEEL_BASE/config.json
 # Configure the ENV
 
 ## add N4BiasFieldCorrection to path
-chmod +x /etc/fsl/5.0/fsl.sh
+# chmod +x /etc/fsl/5.0/fsl.sh
 source /etc/fsl/5.0/fsl.sh
 export ANTSPATH=/usr/lib/ants
 PATH=$PATH:/usr/lib/ants
@@ -49,7 +49,7 @@ POSSUMDIR=/usr/share/fsl/5.0
 # add base fw so that it can find the awkflipbvec
 PATH=$PATH:/$FLYWHEEL_BASE
 # Same for python3 in miniconda
-export PATH=$PATH:/root/miniconda3/bin
+export PATH=$PATH:/conda/miniconda3/bin
 ###############################################################################
 # Initialize config parameters
 
