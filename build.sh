@@ -1,2 +1,3 @@
 #!/bin/bash
-docker build -t vistalab/rtppreproc:$1 ./
+# --no-cache
+docker build --no-cache -t vistalab/rtppreproc:$1 ./

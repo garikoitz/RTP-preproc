@@ -3,19 +3,21 @@ FROM brainlife/fsl:5.0.9
 MAINTAINER Garikoitz Lerma-Usabiaga <glerma@stanford.edu> 
 
 # RUN apt-get update 
-RUN apt install debconf-utils 
-RUN apt-get -qq update && apt-get -qq install -y \
-    unzip \
-    wget \
-    curl \
-    zip \
-    gzip \
-    python \
-    bzip2 \
-    ants \
-	vim
+# RUN apt install debconf-utils 
+# RUN apt-get -qq update && apt-get -qq install -y \
+#    unzip \
+#    wget \
+#    curl \
+#    zip \
+#    gzip \
+#    python \
+#    bzip2 \
+#    ants \
+#	vim
 ## install ants / fsl / other requirements
 # RUN apt-get install -y ants 
+
+RUN apt-get update && apt-get install -y ants
 
 ## add N4BiasFieldCorrection to path
 ENV export ANTSPATH=/usr/lib/ants
@@ -38,32 +40,32 @@ RUN apt-get install -y git g++ python python-numpy libeigen3-dev zlib1g-dev libq
 
 ## install and compile mrtrix3
 RUN git clone https://github.com/MRtrix3/mrtrix3.git
-RUN cd mrtrix3 && git fetch --tags && git checkout tags/3.0_RC3 && ./configure -nogui && ./build
+RUN cd mrtrix3 && git fetch --tags && git checkout tags/3.0.1 && ./configure -nogui && ./build
 
 ## manually add to path
 ENV PATH=$PATH:/mrtrix3/bin
 
 # Add Miniconda
-RUN mkdir /conda
-RUN chmod a+wrx /conda
-RUN wget https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh
-RUN bash Miniconda3-4.5.4-Linux-x86_64.sh -b -p /conda
-RUN rm Miniconda3-4.5.4-Linux-x86_64.sh
+# RUN mkdir /miniconda3
+# RUN wget https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh
+# RUN bash Miniconda3-4.5.4-Linux-x86_64.sh -b -p /miniconda3 -f
+# RUN chmod a+wrx /miniconda3
+# RUN rm Miniconda3-4.5.4-Linux-x86_64.sh
 
 # Set path to conda
-ENV PATH $PATH:/conda/miniconda3/bin
+# ENV PATH $PATH:/miniconda3/bin
 
 # Updating Miniconda packages
-RUN conda update conda
+# RUN conda update conda
 
 # Copy requirements
-COPY requirements.txt ./
+# COPY requirements.txt ./
 
 # pip install requirements
-RUN python3 -m pip install --no-cache-dir -r requirements.txt
+# RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
 # Copy python files
-COPY flipX.py ./
+# COPY flipX.py ./
 
 
 #make it work under singularity 
@@ -89,5 +91,13 @@ ENTRYPOINT ["/flywheel/v0/run"]
 
 
 #make it work under singularity
-RUN ldconfig 
+# RUN ldconfig 
+
+# Ubuntu, by default it changes the default /bin/sh to point to a thing called "dash" rather than "bash". 
+# "dash" is simpler/faster to load than "bash", but unfortunately it breaks a lot of programs that 
+# expects /bin/sh to point to bash. 
+# To correct this, you can add following in your Dockerfile to reset it to bash.
+# https://wiki.ubuntu.com/DashAsBinSh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 

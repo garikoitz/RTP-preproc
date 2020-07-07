@@ -1,18 +1,28 @@
 {
     "config":{
-        "rpe": "none",
         "acqd": "AP",
-        "denoise": false,
-        "degibbs": false,
-        "eddy": false,
-        "bias": false,
-        "ricn": false,
+        "denoise": true,
+        "degibbs": true,
+        "eddy": true,
+        "bias": true,
+        "ricn": true,
         "norm": false,
         "nval": 1000,
-        "anatalign": false,
+        "anatalign": true,
         "reslice":1,
         "doreslice": false,
-        "saveoutput":false
+        "saveoutput":true,
+        "bias_method":"ants",
+        "antsb":"[150,3]",
+        "antsc":"[200x200,1e-6]",
+        "antss":"2",
+        "eddy_data_is_shelled":true,
+        "eddy_slm":"linear",
+        "eddy_niter":5,
+        "eddy_repol":true,
+        "eddy_mporder":0,
+        "eddy_slspec":"",
+        "topup_lambda":"0.005,0.001,0.0001,0.000015,0.000005,0.0000005,0.00000005,0.0000000005,0.00000000001"
     }
 }
 
