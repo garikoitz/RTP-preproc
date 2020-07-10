@@ -126,31 +126,33 @@ config_topup_lambda="$(parse_config 'topup_lambda')"
 
 
 # We do not use their method of having it in the config
-DIFF=$(find $INPUT_DIR/DIFF/* -type f -name "*.nii*" | head -1)
-BVAL=$(find $INPUT_DIR/BVAL/* -type f -name "*.bval*" | head -1)
-BVEC=$(find $INPUT_DIR/BVEC/* -type f -name "*.bvec*" | head -1)
+DIFF=$(find $INPUT_DIR/DIFF/* -name "*.nii*" | head -1)
+BVAL=$(find $INPUT_DIR/BVAL/* -name "*bval*" | head -1)
+BVEC=$(find $INPUT_DIR/BVEC/* -name "*bvec*" | head -1)
 
 
 ## optional t1w, only required if alignment with anatomical required 
 if [[ -d  $INPUT_DIR/ANAT ]]; then
-    ANAT=$(find $INPUT_DIR/ANAT/* -type f -name "*.nii*" | head -1)  ## optional
+    ANAT=$(find $INPUT_DIR/ANAT/* -name "*.nii*" | head -1)  ## optional
 fi
 ## optional FS, alignment to FS mask if FS dir exists
 
 if [[ -d $INPUT_DIR/FSMASK ]]; then
     FS=true
-	FSMASK=$(find $INPUT_DIR/FSMASK/* -type f -name "*.nii*" | head -1) 
+	FSMASK=$(find $INPUT_DIR/FSMASK/* -name "*.nii*" | head -1) 
 fi
 ## optional reverse phase encoded (rpe) inputs
 if [[ -d  $INPUT_DIR/RDIF ]]; then
-    RDIF=$(find $INPUT_DIR/RDIF/* -type f -name "*.nii*" | head -1)  ## optional
+    RDIF=$(find $INPUT_DIR/RDIF/* -name "*.nii*" | head -1)  ## optional
+    RBVL="NO"
+	RBVC="NO"
 fi
 
 if [[ -d  $INPUT_DIR/RBVL ]]; then
-    RBVL=$(find $INPUT_DIR/RBVL/* -type f -name "*.bval*" | head -1) ## optional
+    RBVL=$(find $INPUT_DIR/RBVL/*  -name "*bval*" | head -1) ## optional
 fi
 if [[ -d  $INPUT_DIR/RBVC ]]; then
-    RBVC=$(find $INPUT_DIR/RBVC/* -type f -name "*.bvec*" | head -1) ## optional
+    RBVC=$(find $INPUT_DIR/RBVC/* -name "*bvec*" | head -1) ## optional
 fi
 
 
@@ -374,7 +376,7 @@ if [[ $DO_DEGIBBS == "true" ]]; then
     difm=${difm}_degibbs
 
 fi
-
+ 
 ## perform eddy correction with FSL
 if [[ $DO_EDDY == "true" ]]; then
 
@@ -391,7 +393,24 @@ if [[ $DO_EDDY == "true" ]]; then
     	## pull and merge the b0s
     	dwiextract -bzero ${difm}.mif fpe_b0.mif $common
     	dwiextract -bzero rpe_${difm}.mif rpe_b0.mif $common ## maybe redundant?
-    	mrcat fpe_b0.mif rpe_b0.mif b0_pairs.mif -axis 3 $common
+
+
+		nb0F=`mrinfo -size fpe_b0.mif | grep -oE '[^[:space:]]+$'`
+		nb0R=`mrinfo -size rpe_b0.mif | grep -oE '[^[:space:]]+$'`
+		if [ $nb0F -gt $nb0R ];
+		then
+		mrconvert fpe_b0.mif tmp.mif -coord 3 0:$(($nb0R-1)) $common
+		mrcat tmp.mif rpe_b0.mif b0_pairs.mif -axis 3 $common 
+		elif [ $nb0F -eq $nb0R ];
+		then
+		mrcat fpe_b0.mif rpe_b0.mif b0_pairs.mif -axis 3 $common
+		else
+		mrconvert rpe_b0.mif tmp.mif -coord 3 0:$(($nb0F-1)) $common
+		mrcat fpe_b0.mif tmp.mif b0_pairs.mif -axis 3 $common
+		fi
+
+
+
 
     	## call to dwifslpreproc w/ new options
     	dwifslpreproc ${difm}.mif ${difm}_eddy.mif -rpe_pair -se_epi b0_pairs.mif -pe_dir ${ACQD} -align_seepi -topup_options "$topup_options" -eddy_options "$eddy_options" $common_fslpreproc $common
