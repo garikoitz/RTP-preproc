@@ -21,3 +21,4 @@ For most of the cases, the steps will be:
 2. Run dwi-bvec-flip-detect: if the bvec is flipped, it will detect it and flip it automatically. 
 3. Run RTP-pipeline
 
+Check the wiki in RTP-pipeline for the whole process, even for this step
