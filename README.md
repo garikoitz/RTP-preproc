@@ -1,7 +1,9 @@
 # RTP-preproc
 Reproducible Tract Profiles - preprocessing.
 
-This gear takes diffusion images, bvec and bval files, and optionally a T1 and preprocess them. 
+This container is part of the [RTP2](https://github.com/garikoitz/RTP-pipeline/wiki) suite of tools. 
+
+This container/gear takes diffusion images, bvec and bval files, and optionally a T1 and preprocess them. 
 The output of this gear is prepared to go to RTP-pipeline.
 
 This gear is an adaptation from mrTrix's (https://github.com/MRtrix3/mrtrix3) recommended preprocessing procedure implemented in Brainlife (https://brainlife.io/app/5a813e52dc4031003b8b36f9)
