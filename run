@@ -251,7 +251,7 @@ fi
 
 
 ## determine the type of acquisition for dwipreproc eddy options
-if [ $RDIF == "null" ];
+if [[ ! $RDIF ]];
 then 
 
     ## if no second sequence, override to the only option
@@ -520,13 +520,24 @@ if [[ $DO_ANATALIGN == "true" ]]; then
 
     echo "Aligning dwi data with  anatomy..."
 
-    ## compute BBR registration corrected diffusion data to  anatomy
-    epi_reg --epi=b0_dwi_brain.nii.gz --t1=${ANAT}.nii.gz --t1brain=${ANAT}_brain.nii.gz --out=dwi2anatalign
-
+    # epi_reg from FSL was doing a poor job, so here I maintain the old code and 
+	# add the new version with ANTs
+	## compute BBR registration corrected diffusion data to  anatomy
+    # epi_reg --epi=b0_dwi_brain.nii.gz --t1=${ANAT}.nii.gz --t1brain=${ANAT}_brain.nii.gz --out=dwi2anatalign
     ## apply the transform w/in mrtrix, correcting gradients
-    transformconvert dwi2anatalign.mat b0_dwi_brain.nii.gz ${ANAT}_brain.nii.gz flirt_import dwi2anatalign_mrtrix.mat $common
-    mrtransform -linear dwi2anatalign_mrtrix.mat ${difm}.mif ${difm}_anatalign.mif $common
-    difm=${difm}_anatalign
+    # transformconvert dwi2anatalign.mat b0_dwi_brain.nii.gz ${ANAT}_brain.nii.gz flirt_import dwi2anatalign_mrtrix.mat $common
+    # mrtransform -linear dwi2anatalign_mrtrix.mat ${difm}.mif ${difm}_anatalign.mif $common
+
+	# This is the new code with ANTs
+	export ANTSPATH=/usr/bin/
+	## compute transform mat using ANTs
+	antsRegistrationSyN.sh -d 3 -f ${ANAT}.nii.gz -m b0_dwi_brain.nii.gz -t r -o ants
+	## Apply the transform matrix
+	ConvertTransformFile 3 ants0GenericAffine.mat ants0GenericAffine.txt
+	transformconvert ants0GenericAffine.txt itk_import dwi2anatalign_mrtrix.txt
+	mrtransform -linear dwi2anatalign_mrtrix.txt ${difm}.mif ${difm}_anatalign.mif $common
+
+	difm=${difm}_anatalign
 
     ## assign output space label
     out=anatalign
