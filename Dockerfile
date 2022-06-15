@@ -40,7 +40,7 @@ RUN apt-get install -y git g++ python python-numpy libeigen3-dev zlib1g-dev libq
 
 ## install and compile mrtrix3
 RUN git clone https://github.com/MRtrix3/mrtrix3.git
-RUN cd mrtrix3 && git fetch --tags && git checkout tags/3.0.1 && ./configure -nogui && ./build
+RUN cd mrtrix3 && git fetch --tags && git checkout tags/3.0.3 && ./configure -nogui && ./build
 
 ## manually add to path
 ENV PATH=$PATH:/mrtrix3/bin
