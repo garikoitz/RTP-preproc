@@ -40,17 +40,18 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 ### Inputs
 
 - *Encoding direction in the phase of adquisition*
-  - __Name__: *Phase direction*
-  - __Type__: *"string"*
-  - __Optional__: *yes*
-  - __Description__: *Encoding direction in the phase of adquisition [default=PA]*
-  - __Notes__: *{Any additional notes to be provided by the user}*
+  - __Name__: *acqd*
+  - __Type__: *string*
+  - __Optional__: *true*
+  - __Classification__: *{Based on "inputs.Input-File.base"}*
+  - __Description__: *Encoding direction in the phase of adquisition*
+  - __Notes__: *[default=PA]*
   
   
-  - *{Input-File}*
-  - __Name__: *{From "inputs.Input-File"}*
-  - __Type__: *{From "inputs.Input-File.base"}*
-  - __Optional__: *{From "inputs.Input-File.optional"}*
+- *Denoise DWI data*
+  - __Name__: *denoise*
+  - __Type__: *boolean*
+  - __Optional__: *false*
   - __Classification__: *{Based on "inputs.Input-File.base"}*
   - __Description__: *{From "inputs.Input-File.description"}*
   - __Notes__: *{Any additional notes to be provided by the user}*
