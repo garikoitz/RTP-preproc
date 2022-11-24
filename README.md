@@ -103,13 +103,13 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
   - __Description__: *Align dwi data with anatomy*
   - __Default__: *false*
 
-- *-doreslice*
-  - __Name__: *doreslice*
+- *doreslice*
+  - __Name__: *-doreslice*
   - __Type__: *boolean*
   - __Description__: *Do reslicing*
   - __Default__: *false*
 
-- *{Config-Option}*
+- *{saveoutput}*
   - __Name__: *{From "config.Config-Option"}*
   - __Type__: *{From "config.Config-Option.type"}*
   - __Description__: *{From "config.Config-Option.description"}*
