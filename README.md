@@ -117,35 +117,13 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
   - __Description__: *Align dwi data with anatomy [default=false]*
   - __Notes__: **
 
-- *Reslicing*
+- *-doreslice*
   - __Name__: *doreslice*
   - __Type__: *boolean*
-  - __Optional__: *true*
-  - __Description__: *Do reslicing [default=false]*
-  - __Notes__: *-doreslice*
-
-
-### Config
+  - __Description__: *Do reslicing*
+  - __Default__: *default=false*
 
 - *{Config-Option}*
-  - __Name__: *{From "config.Config-Option"}*
-  - __Type__: *{From "config.Config-Option.type"}*
-  - __Description__: *{From "config.Config-Option.description"}*
-  - __Default__: *{From "config.Config-Option.default"}*
-  
-  - *{Config-Option}*
-  - __Name__: *{From "config.Config-Option"}*
-  - __Type__: *{From "config.Config-Option.type"}*
-  - __Description__: *{From "config.Config-Option.description"}*
-  - __Default__: *{From "config.Config-Option.default"}*
-  
-  - *{Config-Option}*
-  - __Name__: *{From "config.Config-Option"}*
-  - __Type__: *{From "config.Config-Option.type"}*
-  - __Description__: *{From "config.Config-Option.description"}*
-  - __Default__: *{From "config.Config-Option.default"}*
-  
-  - *{Config-Option}*
   - __Name__: *{From "config.Config-Option"}*
   - __Type__: *{From "config.Config-Option.type"}*
   - __Description__: *{From "config.Config-Option.description"}*
