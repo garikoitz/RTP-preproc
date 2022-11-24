@@ -88,6 +88,26 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
   - __Description__: *Perform intensity normalization of dwi data [default=false]*
   - __Notes__: **
 
+- *Normalize the intensity of the FA white matter mask*
+  - __Name__: *nval*
+  - __Type__: *number*
+  - __Optional__: *false*
+  - __Description__: *Normalize the intensity of the FA white matter mask to this number [default=1000]*
+  - __Notes__: **
+
+- *Align dwi data with anatomy*
+  - __Name__: *anatalign*
+  - __Type__: *boolean*
+  - __Optional__: *true*
+  - __Description__: *Align dwi data with anatomy [default=false]*
+  - __Notes__: **
+
+- *Reslicing*
+  - __Name__: *doreslice*
+  - __Type__: *boolean*
+  - __Optional__: *true*
+  - __Description__: *Do reslicing [default=false]*
+  - __Notes__: *-doreslice*
 
 
 ### Config
