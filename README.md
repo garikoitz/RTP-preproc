@@ -51,6 +51,12 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
   - __Description__: *BVAL file.*
   - __Notes__:*{}*
 
+- *BVEC*
+  - __Name__: *BVEC*
+  - __Type__: *bvec*
+  - __Description__: *BVEC file.*
+  - __Notes__:*{}*
+  
 - *ANAT*
   - __Name__: *ANAT*
   - __Type__: *nifti*
