@@ -43,33 +43,52 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
   - __Name__: *acqd*
   - __Type__: *string*
   - __Optional__: *true*
-  - __Classification__: *{Based on "inputs.Input-File.base"}*
   - __Description__: *Encoding direction in the phase of adquisition [default=PA]*
-  - __Notes__: *{Any additional notes to be provided by the user}*
+  - __Notes__: **
   
 - *Denoise diffusion data*
   - __Name__: *denoise*
   - __Type__: *boolean*
   - __Optional__: *false*
-  - __Classification__: *{Based on "inputs.Input-File.base"}*
   - __Description__: *Denoise data using PCA [default=true]*
-  - __Notes__: *{Any additional notes to be provided by the user}*
+  - __Notes__: **
   
-- *Gibbs Ringing Artifacts*
+- *Gibbs ringing artifacts*
   - __Name__: *degibbs*
   - __Type__: *boolean*
-  - __Optional__: *false*
-  - __Classification__: *{Based on "inputs.Input-File.base"}*
+  - __Optional__: *true*
   - __Description__: *Perform Gibbs ringing correction  [default=true]*
-  - __Notes__: *{Any additional notes to be provided by the user}*
+  - __Notes__: **
   
-  - *{Input-File}*
-  - __Name__: *{From "inputs.Input-File"}*
-  - __Type__: *{From "inputs.Input-File.base"}*
-  - __Optional__: *{From "inputs.Input-File.optional"}*
-  - __Classification__: *{Based on "inputs.Input-File.base"}*
-  - __Description__: *{From "inputs.Input-File.description"}*
-  - __Notes__: *{Any additional notes to be provided by the user}*
+- *Eddy current*
+  - __Name__: *eddy*
+  - __Type__: *boolean*
+  - __Optional__: *false*
+  - __Description__: *Perform eddy current correction. If inverted phase encoding direction files are found, eddy will be done as part of topup. [default=true]*
+  - __Notes__: **
+
+- *Bias correction*
+  - __Name__: *bias*
+  - __Type__: *boolean*
+  - __Optional__: *true*
+  - __Description__: *Compute bias correction with ANTs on dwi data [default=false]*
+  - __Notes__: **
+
+- *Rician background noise*
+  - __Name__: *ricn*
+  - __Type__: *boolean*
+  - __Optional__: *true*
+  - __Description__: *Perform Rician background noise removal [default=false]*
+  - __Notes__: **
+
+- *Intensity normalization*
+  - __Name__: *norm*
+  - __Type__: *boolean*
+  - __Optional__: *true*
+  - __Description__: *Perform intensity normalization of dwi data [default=false]*
+  - __Notes__: **
+
+
 
 ### Config
 
