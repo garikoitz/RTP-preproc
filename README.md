@@ -55,12 +55,12 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
   - __Description__: *Denoise data using PCA [default=true]*
   - __Notes__: *{Any additional notes to be provided by the user}*
   
-- *{Input-File}*
-  - __Name__: *{From "inputs.Input-File"}*
-  - __Type__: *{From "inputs.Input-File.base"}*
-  - __Optional__: *{From "inputs.Input-File.optional"}*
+- *Gibbs Ringing Artifacts*
+  - __Name__: *degibbs*
+  - __Type__: *boolean*
+  - __Optional__: *false*
   - __Classification__: *{Based on "inputs.Input-File.base"}*
-  - __Description__: *{From "inputs.Input-File.description"}*
+  - __Description__: *Perform Gibbs ringing correction  [default=true]*
   - __Notes__: *{Any additional notes to be provided by the user}*
   
   - *{Input-File}*
