@@ -70,50 +70,44 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 - *eddy*
   - __Name__: *eddy*
   - __Type__: *boolean*
-  - __Optional__: *false*
   - __Description__: *Perform eddy current correction. If inverted phase encoding direction files are found, eddy will be done as part of topup.*
   - __Default__: *true*
 
 - *bias*
   - __Name__: *bias*
   - __Type__: *boolean*
-  - __Optional__: *true*
   - __Description__: *Compute bias correction with ANTs on dwi data*
   - __Default__: *false*
 
-- *Rician background noise*
+- *ricn*
   - __Name__: *ricn*
   - __Type__: *boolean*
-  - __Optional__: *true*
-  - __Description__: *Perform Rician background noise removal [default=false]*
-  - __Notes__: **
+  - __Description__: *Perform Rician background noise removal*
+  - __Default__: *false*
 
-- *Intensity normalization*
+- *norm*
   - __Name__: *norm*
   - __Type__: *boolean*
-  - __Optional__: *true*
-  - __Description__: *Perform intensity normalization of dwi data [default=false]*
-  - __Notes__: **
+  - __Description__: *Perform intensity normalization of dwi data*
+  - __Default__: *false*
 
-- *Normalize the intensity of the FA white matter mask*
+- *nval*
   - __Name__: *nval*
   - __Type__: *number*
-  - __Optional__: *false*
-  - __Description__: *Normalize the intensity of the FA white matter mask to this number [default=1000]*
-  - __Notes__: **
+  - __Description__: *Normalize the intensity of the FA white matter mask to this number*
+  - __Default__: *1000*
 
-- *Align dwi data with anatomy*
+- *anatalign*
   - __Name__: *anatalign*
   - __Type__: *boolean*
-  - __Optional__: *true*
-  - __Description__: *Align dwi data with anatomy [default=false]*
-  - __Notes__: **
+  - __Description__: *Align dwi data with anatomy*
+  - __Default__: *false*
 
 - *-doreslice*
   - __Name__: *doreslice*
   - __Type__: *boolean*
   - __Description__: *Do reslicing*
-  - __Default__: *default=false*
+  - __Default__: *false*
 
 - *{Config-Option}*
   - __Name__: *{From "config.Config-Option"}*
