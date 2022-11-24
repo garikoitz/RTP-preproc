@@ -29,6 +29,7 @@ In this section the treatment of diffusion images is performed, specifically the
 RTP2 uses some of the code from the same base repository (https://www.github.com/vistalab/vistasoft), but the
 tractography system has been redesigned for flexibility and completeness based on Freesurfer (Fischl, 2012), MRtrix (Tournier et al., 2019).
 
+RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when the optional inverse phase encoded data are provided, otherwise the pipeline uses FSL's eddy tool. The pipeline can also perform de-noising, reslicing, and alignment to an anatomical image. Required inputs are diffusion NIfTI, BVEC, BVAL, and Anatomical (ACPC aligned) NIfTI.".
 
 ### Cite
 
@@ -38,7 +39,7 @@ tractography system has been redesigned for flexibility and completeness based o
 
 ### Inputs
 
-- *{Input-File}*
+- *Acquisition phase encoding direction*
   - __Name__: *{From "inputs.Input-File"}*
   - __Type__: *{From "inputs.Input-File.base"}*
   - __Optional__: *{From "inputs.Input-File.optional"}*
