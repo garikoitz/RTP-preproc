@@ -39,12 +39,27 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 
 ### Inputs
 
+- *{Input-Option}*
+  - __Name__: *{From "config.Config-Option"}*
+  - __Type__: *{From "config.Config-Option.type"}*
+  - __Clasification__:*{}*
+  - __Description__: *{From "config.Config-Option.description"}*
+  - __Default__: *{From "config.Config-Option.default"}*
+  - __Notes__:*{}*
+
+### Config
+
+- *{Config-Option}*
+  - __Name__: *{From "config.Config-Option"}*
+  - __Type__: *{From "config.Config-Option.type"}*
+  - __Description__: *{From "config.Config-Option.description"}*
+  - __Default__: *{From "config.Config-Option.default"}*
+
 - *Encoding direction in the phase of adquisition*
   - __Name__: *acqd*
   - __Type__: *string*
-  - __Optional__: *true*
-  - __Description__: *Encoding direction in the phase of adquisition [default=PA]*
-  - __Notes__: **
+  - __Description__: *Encoding direction in the phase of adquisition*
+  - __Default__: * [default=PA]*
   
 - *Denoise diffusion data*
   - __Name__: *denoise*
