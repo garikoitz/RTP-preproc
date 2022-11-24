@@ -26,6 +26,9 @@ Please, refer to the wiki for the most updated information in how to use it.
 ### Summary
 
 In this section the treatment of diffusion images is performed, specifically the preprocessing, registration, modeling and tracking. As performed in the most popular tract recontruction programs. MRtrix (Tournier et al., 2019),FSL (Smith et al., 2004), Tracula (Yendiki et al., 2011), TrackVis (Wang et al., 2007), DSI-studio (Yeh et al., 2010) or Dipy (Garyfallidis et al., 2014).
+RTP2 uses some of the code from the same base repository (https://www.github.com/vistalab/vistasoft), but the
+tractography system has been redesigned for flexibility and completeness based on Freesurfer (Fischl, 2012), MRtrix (Tournier et al., 2019).
+
 
 ### Cite
 
