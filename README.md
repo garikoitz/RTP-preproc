@@ -49,45 +49,37 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 
 ### Config
 
-- *{Config-Option}*
-  - __Name__: *{From "config.Config-Option"}*
-  - __Type__: *{From "config.Config-Option.type"}*
-  - __Description__: *{From "config.Config-Option.description"}*
-  - __Default__: *{From "config.Config-Option.default"}*
-
-- *Encoding direction in the phase of adquisition*
+- *acqd*
   - __Name__: *acqd*
   - __Type__: *string*
   - __Description__: *Encoding direction in the phase of adquisition*
-  - __Default__: *default=PA*
+  - __Default__: *PA*
   
-- *Denoise diffusion data*
+- *denoise*
   - __Name__: *denoise*
   - __Type__: *boolean*
-  - __Optional__: *false*
-  - __Description__: *Denoise data using PCA [default=true]*
-  - __Notes__: **
+  - __Description__: *Denoise data using PCA*
+  - __Default__: *true*
   
-- *Gibbs ringing artifacts*
+- *degibbs*
   - __Name__: *degibbs*
   - __Type__: *boolean*
-  - __Optional__: *true*
-  - __Description__: *Perform Gibbs ringing correction  [default=true]*
-  - __Notes__: **
+  - __Description__: *Perform Gibbs ringing correction*
+  - __Default__: *true*
   
-- *Eddy current*
+- *eddy*
   - __Name__: *eddy*
   - __Type__: *boolean*
   - __Optional__: *false*
-  - __Description__: *Perform eddy current correction. If inverted phase encoding direction files are found, eddy will be done as part of topup. [default=true]*
-  - __Notes__: **
+  - __Description__: *Perform eddy current correction. If inverted phase encoding direction files are found, eddy will be done as part of topup.*
+  - __Default__: *true*
 
-- *Bias correction*
+- *bias*
   - __Name__: *bias*
   - __Type__: *boolean*
   - __Optional__: *true*
-  - __Description__: *Compute bias correction with ANTs on dwi data [default=false]*
-  - __Notes__: **
+  - __Description__: *Compute bias correction with ANTs on dwi data*
+  - __Default__: *false*
 
 - *Rician background noise*
   - __Name__: *ricn*
