@@ -39,12 +39,53 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 
 ### Inputs
 
-- *{Input-Option}*
-  - __Name__: *{From "config.Config-Option"}*
-  - __Type__: *{From "config.Config-Option.type"}*
-  - __Clasification__:*{}*
-  - __Description__: *{From "config.Config-Option.description"}*
-  - __Default__: *{From "config.Config-Option.default"}*
+- *DIFF*
+  - __Name__: *DIFF*
+  - __Type__: *nifti*
+  - __Description__: *Diffusion NIfTI image.*
+  - __Notes__:*{}*
+
+- *BVAL*
+  - __Name__: *BVAL*
+  - __Type__: *bval*
+  - __Description__: *BVAL file.*
+  - __Notes__:*{}*
+
+- *ANAT*
+  - __Name__: *ANAT*
+  - __Type__: *nifti*
+  - __Description__: *Optional anatomical T1w NIfTI image. Required only if anatalign=true*
+  - __Optional__:*true*
+  - __Notes__:*{}*
+
+- *FSMASK*
+  - __Name__: *FSMASK*
+  - __Type__: *nifti*
+  - __Description__: *Optional freesurfer mask, if not passed FSL will calculate it internally.*
+  - __Optional__:*true*
+  - __Notes__:*{}*
+
+- *RDIF*
+  - __Name__: *RDIF*
+  - __Type__: *nifti*
+  - __Description__: *Optional reverse phase encoded (rpe) diffusion NIfTI image.*
+  - __Optional__:*true*
+  - __Notes__:*{}*
+
+
+- *RBVL*
+  - __Name__: *RBVL*
+  - __Type__: *bval*
+  - __Description__: *Optional reverse phase encoded (rpe) BVAL file.*
+  - __Optional__:*true*
+  - __Notes__:*{}*
+
+
+- *RBVC*
+  - __Name__: *RBVC*
+  - __Type__: *bvec*
+  - __Description__: *Optional reverse phase encoded (rpe) BVEC file.*
+  - __Optional__:*true*
   - __Notes__:*{}*
 
 ### Config
