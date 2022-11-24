@@ -40,7 +40,7 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 ### Inputs
 
 - *Acquisition phase encoding direction*
-  - __Name__: *PA*
+  - __Name__: *Phase direction*
   - __Type__: *string*
   - __Optional__: *optional*
   - __Description__: *Acquisition phase encoding direction [default=PA]*
