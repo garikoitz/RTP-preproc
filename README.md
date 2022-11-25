@@ -261,6 +261,8 @@ A list of containers, in the order they need to be run:
 
 ## Usage
 
+This is an example for Docker container:
+
 ```
 docker run --rm -ti \
     -v </path/to/input/>:/input/flywheel/v0/input/ \
@@ -268,6 +270,8 @@ docker run --rm -ti \
     -v </path/for/example_config.json>:/flywheel/v0/config.json
     garikoitz/rtppreproc:<version-tag>
 ```
+This is an example for Singularity container:
+
 ```
 singularity run -e --no-home \
     --bind /scratch:/scratch \
