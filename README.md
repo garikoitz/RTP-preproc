@@ -241,42 +241,16 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 
 *{A list of output files (if possible?)}*
 
-- *{Output-File}*
-  - __Name__: *{From "outputs.Input-File"}*
-  - __Type__: *{From "outputs.Input-File.base"}*
-  - __Optional__: *{From "outputs.Input-File.optional"}*
-  - __Classification__: *{Based on "outputs.Input-File.base"}*
-  - __Description__: *{From "outputs.Input-File.description"}*
-  - __Notes__: *{Any additional notes to be provided by the user}*
+- *Preproc result*
+  - __Name__: *dwi.nii.gz*
+  - __Type__: *nifti*
+  - __Description__: *Images resulting from RTP2 preprocessing*
   
+- *Extra preproc results*
+  - __Name__: *Extra files*
+  - __Type__: *Various*
+  - __Description__: *All files used for preprocessing that are not needed for the next step*
   
-  - *{Output-File}*
-  - __Name__: *{From "outputs.Input-File"}*
-  - __Type__: *{From "outputs.Input-File.base"}*
-  - __Optional__: *{From "outputs.Input-File.optional"}*
-  - __Classification__: *{Based on "outputs.Input-File.base"}*
-  - __Description__: *{From "outputs.Input-File.description"}*
-  - __Notes__: *{Any additional notes to be provided by the user}*
-  
-  
-  - *{Output-File}*
-  - __Name__: *{From "outputs.Input-File"}*
-  - __Type__: *{From "outputs.Input-File.base"}*
-  - __Optional__: *{From "outputs.Input-File.optional"}*
-  - __Classification__: *{Based on "outputs.Input-File.base"}*
-  - __Description__: *{From "outputs.Input-File.description"}*
-  - __Notes__: *{Any additional notes to be provided by the user}*
-  
-  
-  - *{Output-File}*
-  - __Name__: *{From "outputs.Input-File"}*
-  - __Type__: *{From "outputs.Input-File.base"}*
-  - __Optional__: *{From "outputs.Input-File.optional"}*
-  - __Classification__: *{Based on "outputs.Input-File.base"}*
-  - __Description__: *{From "outputs.Input-File.description"}*
-  - __Notes__: *{Any additional notes to be provided by the user}*
-
-
 ### Pre-requisites
 
 This section contains any prerequisites
@@ -285,8 +259,8 @@ This section contains any prerequisites
 
 A list of containers, in the order they need to be run:
 
-1. __*{Gear-Name}__*
-    - Level: *{Level at which gear needs to be run}*
+1. ____docker pull nipy/heudiconv____
+2. ____docker pull garikoitz/anatrois____
 
 #### Prerequisite Files
 
