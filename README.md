@@ -261,19 +261,21 @@ A list of containers, in the order they need to be run:
 
 ## Usage
 
+```
 docker run --rm -ti \
     -v </path/to/input/>:/input/flywheel/v0/input/ \
     -v </path/for/output/>:/output \
     -v </path/for/example_config.json>:/flywheel/v0/config.json
     garikoitz/rtppreproc:<version-tag>
-  
+```
+```
 singularity run -e --no-home \
     --bind /scratch:/scratch \
     --bind </path/to/input/>:/input/flywheel/v0/input/:ro \
     --bind </path/for/output/>:/output \
     --bind </path/for/example_config.json>:/flywheel/v0/config.json
     garikoitz/rtppreproc:<version-tag>
- 
+ ```
 ##### *{Input-File}*
 
 1. Difussion data "nifti"
