@@ -237,17 +237,14 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 - *Extra preproc results*
   - __Name__: *Extra files*
   - __Type__: *Various*
-  - __Description__: *All files used for preprocessing that are not needed for the next step*
-  
-### Pre-requisites
+  - __Description__: *All files generated during preprocessing that are not needed for tractography*
 
-This section contains any prerequisites
 
 #### Prerequisite
 
-A list of containers, in the order they need to be run:
 
 1. ____docker garikoitz/rtppreproc____
+
 
 ## Usage
 
@@ -255,8 +252,8 @@ This is an example for Docker container:
 
 ```
 docker run --rm -ti \
-    -v </path/to/input/>:/input/flywheel/v0/input/ \
-    -v </path/for/output/>:/output \
+    -v </path/to/input/>:/flywheel/v0/input/ \
+    -v </path/for/output/>:/flywheel/v0/output \
     -v </path/for/example_config.json>:/flywheel/v0/config.json
     garikoitz/rtppreproc:<version-tag>
 ```
@@ -265,8 +262,8 @@ This is an example for Singularity container:
 ```
 singularity run -e --no-home \
     --bind /scratch:/scratch \
-    --bind </path/to/input/>:/input/flywheel/v0/input/:ro \
-    --bind </path/for/output/>:/output \
+    --bind </path/to/input/>:/flywheel/v0/input/:ro \
+    --bind </path/for/output/>:/flywheel/v0/output \
     --bind </path/for/example_config.json>:/flywheel/v0/config.json
     garikoitz/rtppreproc:<version-tag>
  ```
