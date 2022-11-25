@@ -273,11 +273,7 @@ singularity run -e --no-home \
     --bind </path/for/output/>:/output \
     --bind </path/for/example_config.json>:/flywheel/v0/config.json
     garikoitz/rtppreproc:<version-tag>
-  
-### Description
-
-*{A detailed description of how the gear works}*
-
+ 
 ##### *{Input-File}*
 
 1. Difussion data "nifti"
@@ -290,21 +286,6 @@ Optional
 7. Reverse phase encoded diffusion "nifti"
 8. Reverse phase encoded diffusion vectors "bvec"
 9. Reverse phase encoded diffusion values "bval"
-
-  
-### Workflow
-
-A picture and description of the workflow
-
-
-Description of workflow
-
-1. Upload file to container
-1. Select file as input to gear
-
-
-
-
 
 
 ## FAQ
