@@ -257,42 +257,41 @@ This section contains any prerequisites
 
 A list of containers, in the order they need to be run:
 
-1. ____docker pull nipy/heudiconv____
-2. ____docker pull garikoitz/anatrois____
-
-#### Prerequisite Files
-
-A list of any files (OTHER than those specified by the input) that the gear will need.
-If possible, list as many specific files as you can:
-
-1. ____{File-Name}__*
-    - Origin: *{Gear-Name, or Scanner, or Upload?}*
-    - Level: *{Container level the file is at}*
-    - Classification: *{Required classification(s) that the file can be}*
-    
-    
-1. ____{File-Name}__*
-    - Origin: *{Gear-Name, or Scanner, or Upload?}*
-    - Level: *{Container level the file is at}*
-    - Classification: *{Required classification(s) that the file can be}*
-
+1. ____docker garikoitz/rtppreproc____
 
 ## Usage
 
-This section provides a more detailed description of the gear, including not just WHAT it does, but HOW it works in flywheel.
-
+docker run --rm -ti \
+    -v </path/to/input/>:/input/flywheel/v0/input/ \
+    -v </path/for/output/>:/output \
+    -v </path/for/example_config.json>:/flywheel/v0/config.json
+    garikoitz/rtppreproc:<version-tag>
+  
+singularity run -e --no-home \
+    --bind /scratch:/scratch \
+    --bind </path/to/input/>:/input/flywheel/v0/input/:ro \
+    --bind </path/for/output/>:/output \
+    --bind </path/for/example_config.json>:/flywheel/v0/config.json
+    garikoitz/rtppreproc:<version-tag>
+  
 ### Description
 
 *{A detailed description of how the gear works}*
 
-#### File Specifications
-
-This section contains specifications on any input files that the gear may need
-
 ##### *{Input-File}*
 
-A description of the input file
+1. Difussion data "nifti"
+2. Difussion vectors "bvec"
+3. Difussion values "bval"
+4. Configuration file "json"
+Optional
+5. Anatomical image "nifti"
+6. Brainmask from FS "nifti"
+7. Reverse phase encoded diffusion "nifti"
+8. Reverse phase encoded diffusion vectors "bvec"
+9. Reverse phase encoded diffusion values "bval"
 
+  
 ### Workflow
 
 A picture and description of the workflow
