@@ -239,9 +239,7 @@ RTP-preproc runs the MRtrix3 preprocessing pipeline, based on FSL's topup when t
 
 #### Files
 
-*{A list of output files (if possible?)}*
-
-- *Preproc result*
+- *Preprocessed diffusion data*
   - __Name__: *dwi.nii.gz*
   - __Type__: *nifti*
   - __Description__: *Images resulting from RTP2 preprocessing*
